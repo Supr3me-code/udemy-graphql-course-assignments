@@ -6,9 +6,13 @@ const SongList = (props) => {
   const songs = props.data.songs;
   let loading = props.data.loading;
   return (
-    <ul>
+    <ul className="collection">
       {!loading ? (
-        songs.map((song, key) => <li>{`${key + 1}. ${song.title}`}</li>)
+        songs.map((song, key) => (
+          <li key={song.id} className="collection-item">
+            {song.title}
+          </li>
+        ))
       ) : (
         <div>loading...</div>
       )}
@@ -19,6 +23,7 @@ const SongList = (props) => {
 const query = gql`
   {
     songs {
+      id
       title
     }
   }
