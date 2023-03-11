@@ -7,6 +7,13 @@ points about graphQL -
 4. difference b/w graphql express and apollo server (in syntax) - vid. 31
 
 
+steps to get data from gql to frontend
+1. identify the data required by the component
+2. write query in gql and in component file
+3. bond query + component
+4. access data
+
+
 fragments in GraphiQL -> fragment FRAGMENT_NAME on TYPE_NAME {
     ...
 }
