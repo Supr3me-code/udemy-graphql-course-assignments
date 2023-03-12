@@ -23,15 +23,14 @@ const SongList = (props) => {
     <div>
       <ul className="collection">
         {!loading ? (
-          songs.map(({id, title}) => (
+          songs.map(({ id, title }) => (
             <li key={id} className="collection-item">
-              {title}
+              <Link to={`/songs/${id}`}>{title}</Link>
               <i
                 style={{ cursor: "pointer" }}
                 className="material-icons"
                 onClick={() => deleteSongHandler(id)}
               >
-                {console.log(id, title)}
                 delete
               </i>
             </li>
