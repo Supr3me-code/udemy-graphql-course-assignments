@@ -3,9 +3,17 @@ import { graphql } from "react-apollo";
 import likeLyric from "../queries/likeLyric";
 
 const LyricList = (props) => {
-  const likeHandler = (id) => {
+  const likeHandler = (id, likes) => {
     props.mutate({
       variables: { id },
+      optimisticResponse: {
+        __typename: "Mutation",
+        likeLyric: {
+          id,
+          __typename: "LyricType",
+          likes: likes + 1,
+        },
+      },
     });
   };
   return (
@@ -13,11 +21,14 @@ const LyricList = (props) => {
       {props.lyrics.map(({ id, content, likes }) => (
         <li key={id} className="collection-item">
           {content}
-          <div>
-            <i className="material-icons" onClick={() => likeHandler(id)}>
+          <div className="vote-box">
+            <i
+              className="material-icons"
+              onClick={() => likeHandler(id, likes)}
+            >
               thumb_up
             </i>
-            {likes}
+            <span>{likes}</span>
           </div>
         </li>
       ))}
